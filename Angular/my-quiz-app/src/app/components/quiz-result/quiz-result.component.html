@@ -1,0 +1,38 @@
+<div class="form-group">
+    <h3>Results</h3>
+    <ng-container *ngIf="quizData">
+      <div *ngFor="let quiz of quizData; let i = index">
+        <div class="row">
+          <div class="col mt-1 mb-2">
+            <span [innerHTML]="quiz.question"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button id="i" [ngClass]="option == quiz.correct_answer
+            ? 'correctAnswer'
+            : option == quiz.selectedAnswer &&
+              quiz.selectedAnswer != quiz.correct_answer
+            ? 'wrongAnswer'
+            : ''
+        " class="btn btn-outline-success" *ngFor="let option of quiz.questionOptions" [innerHTML]="option"></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="w-100" [ngClass]="resultClass">
+            You scored {{ correctAnswerCount }} out of 5
+          </p>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <button type="button" class="w-100 btn btn-secondary btn-lg btn-block" (click)="createNewQuiz()">
+            Create a new Quiz
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>

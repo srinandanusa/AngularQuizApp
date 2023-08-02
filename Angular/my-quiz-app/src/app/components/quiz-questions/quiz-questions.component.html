@@ -1,0 +1,50 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col">
+            <h3>Quiz Maker</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+      <select class="form-control" id="categorySelect" [(ngModel)]="selectedCategory">
+        <option *ngFor="let option of categoryOptions" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col">
+      <select class="form-control" id="difficultySelect" [(ngModel)]="selectedDifficulty">
+        <option *ngFor="let option of difficultyOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+    <div class="col">
+      <button id="createBtn" class="btn btn-success" (click)="getQuizQuestions()">
+        Create
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="quizQuestions">
+    <div *ngFor="let quiz of quizQuestions; let i = index">
+      <div class="row">
+        <div class="col mt-1 mb-2">
+          <span [innerHTML]="quiz.question"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button id="i" [class.selected]="option == quiz.selectedAnswer" class="btn btn-outline-success"
+            *ngFor="let option of quiz.questionOptions" [innerHTML]="option" (click)="selectedAnswer(i, option)"></button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="row" *ngIf="isAllQuestionsAnswered">
+    <div class="col-12 mt-3">
+      <button class="w-100 btn btn-secondary" (click)="submitQuiz()">
+        Submit
+      </button>
+    </div>
+  </div>

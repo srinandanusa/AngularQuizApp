@@ -1,0 +1,21 @@
+.correctAnswer {
+    background-color: #198754;
+    color: #fff;
+}
+
+.wrongAnswer {
+    background-color: red;
+    color: #fff;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
